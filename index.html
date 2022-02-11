@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html id="html_id" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Icon UI/Icons.css">
+    <script src="dist/winbox.bundle.js"></script>
+    <title>Selaria</title>
+    <style>
+        .bar{
+            background-color: rgba(0, 0, 0, 0.548);
+            width: 100%;
+        }
+        html, body{
+            height: 100%;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        .bar_button{
+            text-decoration: none;
+            color: rgb(255, 255, 255);
+            font-weight: thin;
+            background-color: rgba(61, 61, 61, 0);
+            border: none;
+            height: 35px;
+        }
+        .menu_button_long{
+            border-radius: 5px;
+            width: 100%;
+        }
+        .bar_button:hover{
+            text-decoration: none;
+            color: rgb(255, 255, 255);
+            background-color: rgba(148, 148, 148, 0.301);
+            height: 35px;
+            border: none;
+        }
+        body{
+            overflow-x: hidden;
+            overflow-y: hidden;
+            background-image: url("ressources/background/bgdefault.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .bar_menu{
+            width: 100px;
+            background-color: rgba(0, 0, 0, 0.548);
+            border-radius: 5px;
+            visibility: hidden;
+            border-radius: 3px;
+            position: fixed;
+            z-index: 951;
+
+        }
+        .O_menu_button{
+            width: 105px;
+            height: 105px;
+            border-radius: 3px;
+            background-color: rgba(0, 0, 0, 0.548);
+            border: none;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.493);
+            font-weight: bold;
+            text-align: start;
+            color: rgb(255, 255, 255);
+        }
+        .O_menu_button:hover{
+            width: 105px;
+            height: 105px;
+            border-radius: 3px;
+            background-color: rgba(0, 0, 0, 0.548);
+            border: 5px solid rgba(0, 0, 0, 0.19);
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.493);
+            font-weight: bold;
+            text-align: start;
+        }
+        .bar_menu_right{
+            width: 100px;
+            background-color: rgba(0, 0, 0, 0.548);
+            border-radius: 5px;
+            visibility: hidden;
+            position: fixed;
+            z-index: 951;
+            right: 0px;
+        }
+        .bar_menu_all{
+            width: 100px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.548);
+            border-radius: 5px;
+            visibility: hidden;
+            position: fixed;
+            z-index: 3;
+            right: 0;
+        }
+        .winbox{
+            background-color: rgba(0, 0, 0, 0.548);
+            border-radius: 9px;
+            box-shadow: none;
+        }
+        .wb-title{
+            color: rgb(255, 255, 255);
+            box-shadow: none;
+        }
+        .wb-body{
+            background-color: rgba(0, 0, 0, 0);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        #context_menu{
+            box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.548);
+            border-radius: 5px;
+        }
+        #context_menu_O{
+            box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.548);
+            border-radius: 5px;
+        }
+        .wb-body{
+            border-radius: 9px;
+        }
+        .wb-title{
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6, p, a{
+            font-style: normal;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        .winbox.min{
+            border-radius: 0;
+            z-index: 951;
+        }
+        .winbox.max{
+            border-radius: 0;
+        }
+        #notes{
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: rgba(0, 0, 0, 0.548);
+            border-radius: 9px;
+            visibility: hidden;
+            box-shadow: none;
+            font-size: large;
+            position: fixed;
+            color: white;
+            height: 159px;
+            border: none;
+            z-index: 951;
+            width: 315px;
+            resize: none;
+            right: 15px;
+            top: 41px;
+        }
+        #notes:focus-visible{
+            outline: none;
+        }
+        * {cursor: url(ressources/cursors/default.png), default}
+    </style>
+    <script>
+        function open_menu(id)
+        {
+            if(document.getElementById(id).style.visibility=="hidden")
+                {
+                    document.getElementById(id).style.visibility="visible";
+                }
+            else
+                {
+                    document.getElementById(id).style.visibility="hidden";
+                }
+            return true;
+        }
+        function open_app(path){
+            app_window = new WinBox({
+                class: ["win"],
+                border: "0.15em",
+                url: path,
+                title: path,
+                background: localStorage.getItem('window_color'),
+                x: "center",
+                y: "center",
+                top: "35px",
+                root: document.body,
+                id: "app",
+        });
+        }
+        async function load()
+        {
+            document.getElementById("notes").value = localStorage.getItem('notes');
+            var selected = "none";
+        }
+        function first_startup()
+        {
+            localStorage.setItem('title', 'webOS v2.0');
+            localStorage.setItem('base_icon', 'O');
+            localStorage.setItem('window_color', 'background-color: rgba(255, 255, 255, 0.548);');
+            localStorage.setItem('taskbar_color', 'rgb(59, 59, 59)');
+            Notification.requestPermission();
+            new WinBox("premier démarrage", {
+                class: ["win"],
+                html:'<p>inititialisé</p>',
+                modal: true,
+                y:'39px',
+                background: localStorage.getItem('window_color'),
+                root: document.body,
+            });
+        }
+        function open_vm(){
+            new WinBox('Virtual Machine', {
+                class: ["win"],
+                border: "0.15em",
+                url:'index.html',
+                background: localStorage.getItem('window_color'),
+                x: "center",
+                y: "center",
+                top: "35px",
+                root: document.body,
+            });
+        }
+    </script>
+    <link rel="shortcut icon" href="ressources/logo/logo.ico" type="images/x-icon" />  
+</head>
+<body onload="javascript:load();">
+    <div class="bar" id="bar_id">
+        <button id="bar_base_button_O" class="bar_button" onclick="javascript:open_menu('bar_menu_O');">
+            <span class="gg-components"></span>
+        </button>
+        <button id="time_base_button" class="bar_button" style="position: fixed;left: 47.9%;">Impossible de trouver la date!</button>
+        <button id="bar_base_button" class="bar_button" style="float: right;" onclick="javascript:open_menu('barmenu_Power');">
+            <span class="gg-log-off"></span>
+        </button>
+        <button id="bar_base_button" class="bar_button" style="float: right;" onclick="javascript:open_app('apps/terminal.html');">
+            <span class="gg-terminal"></span>
+        </button>
+        <button id="bar_base_button" class="bar_button" style="float: right;" onclick="javascript:open_menu('notes'); localStorage.setItem('notes' , document.getElementById('notes').value);">
+            <span class="gg-album"></span>
+        </button>
+    </div>
+    <div class="bar_menu" id="bar_menu_O">
+        <button class="bar_button menu_button_long" onclick="javascript:open_app('apps/');">menu des apps</button>
+        <button class="bar_button menu_button_long" onclick="javascript:open_app('apps/opendialog.html');">éxécuter</button>
+        <button class="bar_button menu_button_long" onclick="javascript:first_startup();">premier démarrage</button>
+        <button class="bar_button menu_button_long" onclick="javascript:open_app('apps/terminal.html');">Terminal</button>
+        <button class="bar_button menu_button_long" onclick="javascript:open_app('apps/apropos.html');">À propos</button>
+        <button class="bar_button menu_button_long" onclick='javascript:open_vm();'>Machine Virtuelle</button>
+        <button class="bar_button menu_button_long" onclick="javascript:open_app('https://classic.minecraft.net');">Minecraft</button>
+    </div>
+    <div class="bar_menu_right" id="barmenu_Power">
+        <button class="bar_button menu_button_long" onclick="javascript:document.location.href='ressources/veille.html';">mettre en veille</button>
+        <button class="bar_button menu_button_long" onclick="javascript:document.location.href='https://www.bing.com/';">Eteindre</button>
+    </div>
+    <div class="bar_menu" id="context_menu">
+        <button class="bar_button menu_button_long" onclick="javascript:open_app('apps/opendialog.html');">éxécuter</button>
+        <button class="bar_button menu_button_long" onclick="javascript:first_startup();">premier démarrage</button>
+        <button class="bar_button menu_button_long" onclick="javascript:document.location.href='ressources/veille.html';">mettre en veille</button>
+        <button class="bar_button menu_button_long" onclick="javascript:document.location.href='https://www.bing.com/';">Eteindre</button>
+
+        <button class="bar_button menu_button_long" onclick="javascript:open_app('apps/apropos.html');">à propos</button>
+    </div>
+    <div class="bar_menu" id="context_menu_O">
+        <button class="bar_button menu_button_long" onclick="javascript:document.location.href='https://www.bing.com/';">Eteindre</button>
+    </div>
+    <textarea name="" id="notes" cols="30" rows="10"></textarea>
+</body>
+<script>
+    function allsecondsfunction(){
+        document.getElementById('time_base_button').innerHTML=new Date().toLocaleTimeString();
+    }
+    setInterval(allsecondsfunction, 1000);
+    document.addEventListener('contextmenu', function (e){
+        var context_menu = document.getElementById('context_menu');
+        context_menu.style.display = 'none';
+        context_menu.style.visibility = 'hidden';
+        var context_menu = document.getElementById('context_menu_O');
+        context_menu.style.display = 'none';
+        context_menu.style.visibility = 'hidden';
+        e.preventDefault();
+        var x = e.clientX;
+        var y = e.clientY;
+        if(e.target.id == "bar_base_button_O"){
+            var context_menu = document.getElementById('context_menu_O');
+            context_menu.style.left = x + 'px';
+            context_menu.style.top = y + 'px';
+            context_menu.style.display = 'block';
+            context_menu.style.visibility = 'visible';
+            var window_width = window.innerWidth;
+            var window_height = window.innerHeight;
+            var context_menu_width = barmenu_O.offsetWidth;
+            var context_menu_height = barmenu_O.offsetHeight;
+            if(x + context_menu_width > window_width) {
+                context_menu.style.left = (x - context_menu_width) + 'px';
+            }
+            if(y + context_menu_height > window_height) {
+                context_menu.style.top = (y - context_menu_height) + 'px';
+            }
+        }
+        else{
+            var context_menu = document.getElementById('context_menu');
+            context_menu.style.left = x + 'px';
+            context_menu.style.top = y + 'px';
+            context_menu.style.display = 'block';
+            context_menu.style.visibility = 'visible';
+            var window_width = window.innerWidth;
+            var window_height = window.innerHeight;
+            var context_menu_width = barmenu_O.offsetWidth;
+            var context_menu_height = barmenu_O.offsetHeight;
+            if(x + context_menu_width > window_width) {
+                context_menu.style.left = (x - context_menu_width) + 'px';
+            }
+            if(y + context_menu_height > window_height) {
+                context_menu.style.top = (y - context_menu_height) + 'px';
+            }
+        } 
+    });
+    document.addEventListener('click', function (e){
+        var context_menu = document.getElementById('context_menu');
+        context_menu.style.display = 'none';
+        context_menu.style.visibility = 'hidden';
+        var context_menu = document.getElementById('context_menu_O');
+        context_menu.style.display = 'none';
+        context_menu.style.visibility = 'hidden';
+    });
+</script>
+</html>
