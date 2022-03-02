@@ -11,27 +11,17 @@ l'application Minecraft : https://classic.minecraft.net par Mojang
 WebOS est très simple à utiliser :
 
 le fichier a ouvrir pour s'en servir est : index.html
-![image](https://user-images.githubusercontent.com/77587065/153617303-9aba77f0-9749-4d83-a1e9-1de9bfa0c50a.png)
-## applications
-### stables
-- Machine Virtuelle
 
-- à propos
+## Comparaison avec Selaria
 
-- menu des apps
-
-- éxécuter
-
-- premier démarrage
-
-- paramètres
-
-- terminal
-
-### en développement
-- internal browser
-
-- emu+
+|Fonctionnalité|Selaria Lite|Selaria|
+|:---|:---|:---|
+|Applications intégrées|~|Oui|
+|Effets de transparences|Non(Sauf OBBE)|Oui|
+|Animations|Oui|Oui|
+|OBBE|Oui|Oui|
+|Terminal|Oui|Oui|
+|Librairies optionnelles|~|Oui|
 
 ## développement d'application
 
