@@ -135,6 +135,7 @@
         .winbox.min{
             border-radius: 0;
             z-index: 951;
+            height: 35px;
         }
         .winbox.max{
             border-radius: 0;
@@ -421,6 +422,7 @@
     }
     setInterval(allsecondsfunction, 1000);
     document.addEventListener('contextmenu', function (e){
+        var barmenu_O = document.getElementById('barmenu_O');
         var context_menu = document.getElementById('context_menu_desktop');
         context_menu.style.display = 'none';
         context_menu.style.visibility = 'hidden';
@@ -441,8 +443,6 @@
             context_menu.style.visibility = 'visible';
             var window_width = window.innerWidth;
             var window_height = window.innerHeight;
-            var context_menu_width = barmenu_O.offsetWidth;
-            var context_menu_height = barmenu_O.offsetHeight;
             if(x + context_menu_width > window_width) {
                 context_menu.style.left = (x - context_menu_width) + 'px';
             }
@@ -460,8 +460,6 @@
             context_menu.style.visibility = 'visible';
             var window_width = window.innerWidth;
             var window_height = window.innerHeight;
-            var context_menu_width = barmenu_O.offsetWidth;
-            var context_menu_height = barmenu_O.offsetHeight;
             if(x + context_menu_width > window_width) {
                 context_menu.style.left = (x - context_menu_width) + 'px';
             }
@@ -477,8 +475,6 @@
             context_menu.style.visibility = 'visible';
             var window_width = window.innerWidth;
             var window_height = window.innerHeight;
-            var context_menu_width = barmenu_O.offsetWidth;
-            var context_menu_height = barmenu_O.offsetHeight;
             if(x + context_menu_width > window_width) {
                 context_menu.style.left = (x - context_menu_width) + 'px';
             }
