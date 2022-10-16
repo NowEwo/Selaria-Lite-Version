@@ -23,7 +23,3 @@ le fichier a ouvrir pour s'en servir est : Main.exe ( Windows ) ou Main.py ( Cro
 |OBBE|Oui|Oui|
 |Terminal|Oui|Oui|
 |Librairies optionnelles|~|Oui|
-
-## développement d'application
-
-le fichier d'UI (user interface) pour les applications se trouve à Selaria/apps UI/ui.css
